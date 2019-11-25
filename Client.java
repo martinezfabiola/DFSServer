@@ -11,16 +11,16 @@ public class Client {
 			String name = s.nextLine().trim();		    		    	
 			ServicesInterface client = new Services(name);
 
-			ServicesInterface server = (ServicesInterface)Naming.lookup("rmi://localhost/ABC");
+			ServicesInterface services = (ServicesInterface)Naming.lookup("rmi://localhost/ABC");
 			String msg="["+client.getName()+"] got connected";
-			server.send(msg);
+			services.send(msg);
 			System.out.println("Client is ready:");
-			server.setClient(client);
+			services.setClient(client);
 
 			while(true){
 				msg=s.nextLine().trim();
-				msg="["+client.getName()+"] "+msg;		    		
-				server.send(msg);
+				msg="["+client.getName()+"] "+msg;
+				services.send(msg);
 			}
 		} catch (Exception e) {
 			System.out.println("Server failed: " + e);

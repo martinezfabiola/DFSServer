@@ -2,6 +2,9 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.DatagramPacket;
 
+// NOTA: el archivo debe correrse con el siguiente comando
+//                  java -Djava.net.preferIPv4Stack=true MulticastReceiver
+
 public class MulticastReceiver extends Thread {
     protected MulticastSocket socket = null;
     protected byte[] buf = new byte[256];
@@ -15,6 +18,7 @@ public class MulticastReceiver extends Thread {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
                 String received = new String(packet.getData(), 0, packet.getLength());
+                System.out.println(received);
                 if ("end".equals(received)) {
                     break;
                 }
@@ -29,7 +33,7 @@ public class MulticastReceiver extends Thread {
     public static void main(String[] args) {
         try{
             MulticastReceiver server = new MulticastReceiver();
-           server.run();
+            server.run();
         } catch (Exception e) {
             System.out.println("Server failed: " + e);
         }       

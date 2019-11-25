@@ -10,17 +10,17 @@ public static void main (String[] argv) {
 	    	System.out.println("Enter Your name and press Enter:");
 	    	String name = s.nextLine().trim();
  
-	    	Services server = new Services(name);	
+	    	Services services = new Services(name);
  
-	    	Naming.rebind("rmi://localhost/ABC", server);
+	    	Naming.rebind("rmi://localhost/ABC", services);
  
 	    	System.out.println("Server is ready:");
  
-	    	while(true){
+	    	while (true){
 	    		String msg = s.nextLine().trim();
-	    		if (server.getClient()!= null){
-	    			ServicesInterface client = server.getClient();
-	    			msg = "["+server.getName()+"] "+msg;
+	    		if (services.getClient()!= null){
+	    			ServicesInterface client = services.getClient();
+	    			msg = "["+services.getName()+"] "+msg;
 	    			client.send(msg);
 	    		}	
 	    	}

@@ -3,6 +3,10 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.io.IOException;
+import java.util.*;
+
+// NOTA: el archivo debe correrse con el siguiente comando
+//                  java -Djava.net.preferIPv4Stack=true MulticastPublisher
 
 public class MulticastPublisher {
     private MulticastSocket socket;
@@ -22,7 +26,12 @@ public class MulticastPublisher {
     public static void main(String[] args) {
         try{
             MulticastPublisher server = new MulticastPublisher();
-            server.multicast("fabiola mercedes martinez perez");
+            Scanner s = new Scanner(System.in);
+            String msg;
+            while (true) {
+                msg = s.nextLine().trim();
+                server.multicast(msg);
+            }
         } catch (Exception e) {
             System.out.println("Server failed: " + e);
         }       

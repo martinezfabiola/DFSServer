@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0060)https://ldc.usb.ve/~yudith/docencia/ci-4821/Proyecto2V1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title> SOPII (Ene-Mar00) Proyecto # 2 </title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)">
+	<meta name="created" content="00:00:00">
+	<meta name="changedby" content="YUDITH CARDINALE">
+	<meta name="changed" content="00:00:00">
+	<meta name="Originator" content="Microsoft Word 9">
+	<meta name="ProgId" content="Word.Document">
+	<meta name="created" content="00:00:00">
+	<meta name="changed" content="2018-06-09T19:00:25.188116034">
+	<meta name="CHANGEDBY" content="YUDITH CARDINALE">
+	<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Pedro Garc&iacute;a Tortolero</o:Author>
+  <o:LastAuthor>Pedro Garc&iacute;a Tortolero</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>73</o:TotalTime>
+  <o:Created>2000-02-15T14:52:00Z</o:Created>
+  <o:LastSaved>2000-02-15T14:52:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>662</o:Words>
+  <o:Characters>3779</o:Characters>
+  <o:Company>GT</o:Company>
+  <o:Lines>31</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>4640</o:CharactersWithSpaces>
+  <o:Version>9.2720</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+	<style type="text/css">
+		p { color: #000000 }
+		h2 { color: #000000 }
+		h2.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h2.ctl { font-family: "Arial Unicode MS" }
+		h3 { color: #000000 }
+		h3.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h3.ctl { font-family: "Arial Unicode MS" }
+	</style>
+</head>
+<body lang="en-GB" text="#000000" bgcolor="#ffffff" dir="ltr">
+<p lang="es-VE" align="justify"><b>Universidad Simón Bolívar</b></p>
+<p lang="es-VE" align="justify"><b>Taller de Sistemas de Operación
+II - Abril-Julio 2018</b></p>
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+<h2 lang="es-VE" class="western" align="center">Proyecto II</h2>
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;<b>Introducción</b></p>
+<p lang="es-VE" align="justify">El objetivo del segundo proyecto es
+construir una plataforma que brinde a programas Java (u otro
+lenguaje) en ejecución una serie de servicios y beneficios,
+orientados principalmente a la comunicación distribuida,
+sincronización, la tolerancia a fallas y el almacenamiento de
+información de manera segura.</p>
+<p align="justify">&nbsp;<b>Descripción general</b></p>
+<p lang="es-VE" align="justify">El sistema deberá brindar de manera
+sencilla y amigable una herramienta para que se puedan construir
+sistemas con comunicación distribuida, como aplicaciones cliente –
+servidor, sin necesidad de programar ninguno de los elementos
+relacionados con la comunicación en la red.</p>
+<p align="justify">&nbsp;</p>
+<p lang="es-VE" align="justify">Este sistema estará compuesto por
+<i>n&gt;2</i> servidores que se podrán ejecutar de manera aleatoria
+en cualquier lugar de una red <i>LAN</i>, el grupo de servidores
+deberá mantener comunicación constante, de manera que cada nodo
+esté informado en todo momento del estado de los demás.</p>
+<p align="justify">&nbsp;</p>
+<p align="justify"><span lang="es-VE">La función de estos
+servidores, que llamaremos </span><span lang="es-VE"><i>DFS Server</i></span>
+<span lang="en-US"><i>(</i></span><span lang="en-US"><i><b>D</b></i></span><span lang="en-US"><i>istributed
+communication – </i></span><span lang="en-US"><i><b>F</b></i></span><span lang="en-US"><i>ault
+Tolerance – Data </i></span><span lang="en-US"><i><b>S</b></i></span><span lang="en-US"><i>torage)</i></span><span lang="es-VE">,
+será la de ejecutar aplicaciones Java, y brindarle a tiempo de
+corrida una interfaz de servicios para que puedan comunicarse,
+entiéndase enviar y recibir mensajes o incluso objetos, a otras
+aplicaciones que se estén ejecutando en otro servidor del grupo en
+una máquina distinta. También deberá brindar servicios de
+almacenamiento y recuperación de información, objetos, de manera
+local en el servidor donde se está ejecutando la aplicación o de
+manera replicada en todos los servidores del grupo para evitar que al
+ocurrir una falla en un nodo esta información se pierda.</span></p>
+<p align="justify">&nbsp;</p>
+<p lang="es-VE" align="justify">En cuanto a la tolerancia a fallas se
+espera que los servidores puedan hacer respaldos a disco de los
+objetos que almacenan de manera local, en caso de ocurrir una falla
+al levantarse nuevamente el servidor debe poder recuperar estos
+objetos (Revisar el concepto de serialización de objetos).</p>
+<p align="justify">&nbsp;</p>
+<p lang="es-VE" align="justify"><font size="4" style="font-size: 14pt"><b>Especificación:</b></font></p>
+<p align="justify">&nbsp;</p>
+<p><font face="Symbol"><span lang="es-VE">·</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">De los servidores:</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">Deberán mantener en todo momento una lista con la
+información actualizada de los demás servidores del grupo que
+contenga: nombre de la máquina donde se está ejecutando, estado
+(libre/ocupado), nombres de los objetos que almacena y cualquier otra
+información que consideren de mucha utilidad.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">La comunicación&nbsp; de control entre los
+servidores se realizará a través de un </span><span lang="es-VE"><i>socket</i></span>
+<span lang="es-VE">conectado a una dirección </span><span lang="es-VE"><i>multicast</i></span><span lang="es-VE">,
+a la cual se suscribirán los servidores al momento de levantarse.
+Los mensajes que se envían a esta dirección pueden ser </span><span lang="es-VE"><i>multicast</i></span><span lang="es-VE">,
+de importancia para todos, o </span><span lang="es-VE"><i>unicast</i></span><span lang="es-VE">,
+dirigidos a un servidor específicamente.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">La comunicación correspondiente a los servicios
+que se proveen al cliente, se realizará entre los servidores a
+través de </span><span lang="es-VE"><i>Java RMI</i></span><span lang="es-VE">.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">Cada servidor deberá presentar una interfaz
+gráfica al usuario a través de la cual pueda especificar el nombre
+de la clase que se va a ejecutar y sus parámetros, estado del
+sistema (todos los servidores), etc.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">Cada servidor podrá ejecutar sólo una aplicación
+a la vez.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">La iniciación de los programas que se van a
+comunicar puede hacerse individualmente en cada uno de los programas
+o de manera centralizada reservando </span><span lang="es-VE"><i>m</i></span>
+<span lang="es-VE">servidores libres desde uno y asignando a cada uno
+una clase en particular, clases que deberán estar locales a cada uno
+de los servidores, es decir, no hay pase de </span><span lang="es-VE"><i>bytecode</i></span>
+<span lang="es-VE">de clases a través de la red.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">Cada servidor tendrá un </span><span lang="es-VE"><i>buffer</i></span>
+<span lang="es-VE">de mensajes desde el momento de iniciarse una
+ejecución, donde almacenará los mensajes que le han sido enviados
+pero que el programa aún no ha recibido.</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">Un servidor no debe detener el monitoreo del
+sistema una vez iniciada una ejecución.</span></p>
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+<p align="justify">&nbsp;</p>
+<p><font face="Symbol"><span lang="es-VE">·</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">De los servicios a los programas en ejecución:</span></p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">La interfaz a estos programas ofrecerá la
+siguiente lista de servicios:</span></p>
+<p>&nbsp;</p>
+<p align="justify" style="margin-left: 1.25in"><font face="Wingdings"><span lang="es-VE">§</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">send (Object, host): Envía un mensaje al programa
+que se está ejecutando</span> <span lang="es-VE">en la máquina
+</span><span lang="es-VE"><i>host</i></span><span lang="es-VE">.
+Mensajes enviados a un servidor libre o a un </span><span lang="es-VE"><i>host</i></span>
+<span lang="es-VE">sin servidor deben devolver error al programa que
+envió el mensaje (se recomienda el manejo de excepciones).</span></p>
+<p align="justify" style="margin-left: 1.25in"><font face="Wingdings"><span lang="es-VE">§</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">receive (): Devuelve el primer objeto en el </span><span lang="es-VE"><i>buffer</i></span>
+<span lang="es-VE">de mensajes.</span></p>
+<p align="justify" style="margin-left: 1.25in"><font face="Wingdings"><span lang="es-VE">§</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">putData (nombre, Object, normal / replicado):
+Almacena el objeto en el sistema, en caso de existir el nombre se
+devuelve un error.</span></p>
+<p align="justify" style="margin-left: 1.25in"><font face="Wingdings"><span lang="es-VE">§</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">getData (nombre): Devuelve el objeto
+correspondiente, en caso de no estar almacenado localmente investiga
+en los demás servidores, si lo encuentra es devuelto, sino el
+programa recibe un error.</span></p>
+<p align="justify" style="margin-left: 1.25in"><font face="Wingdings"><span lang="es-VE">§</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">removeData (nombre): Elimina del sistema el objeto
+de ese nombre.</span></p>
+<p align="justify" style="margin-left: 1.25in"><font face="Wingdings"><span lang="es-VE">§</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">waitFor (host): Espera a que se inicie una
+ejecución en la máquina </span><span lang="es-VE"><i>host</i></span><span lang="es-VE">.</span></p>
+<p align="justify">&nbsp;</p>
+<p><font face="Courier New"><span lang="es-VE">o</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="es-VE">Los programas que se van a ejecutar deben recibir
+en la línea de comandos los </span><span lang="es-VE"><i>hosts</i></span>
+<span lang="es-VE">con los que se van a comunicar. </span>
+</p>
+<p><br>
+<br>
+
+</p>
+<h3 lang="es-VE" class="western">Acerca de la Entrega 
+</h3>
+<p lang="es-VE" align="justify">Se deberán realizar entregas
+parciales: 
+</p>
+<p lang="es-VE">Primera entrega (15-06-18): Diseño del sistema donde
+se especifique el esquema general a implementar, y ya se hayan tomado
+las decisiones necesarias sobre la comunicación. 
+</p>
+<p lang="es-VE">Segunda entrega (29-06-18): Primera versión del
+sistema y un informe indicando el estado del proyecto. 
+</p>
+<p lang="es-VE">Entrega final (11-07-18): Versión final del sistema.
+</p>
+<p lang="es-VE" align="justify">Para la revisión (13-07-18): deberá
+entregar un informe en el que se indiquen los detalles relevantes en
+cuanto a la implementación, así como también el código del
+proyecto. 
+</p>
+
+</body></html>
