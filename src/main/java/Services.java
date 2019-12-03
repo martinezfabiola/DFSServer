@@ -23,5 +23,6 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
  
 	public void send(String s) throws RemoteException{
 		System.out.println(s);
+		System.out.println("");
 	}	
 }

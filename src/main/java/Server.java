@@ -21,7 +21,8 @@ public static void main (String[] argv) {
 	    		if (services.getClient()!= null){
 	    			ServicesInterface client = services.getClient();
 	    			msg = "["+services.getName()+"] "+msg;
-	    			client.send(msg);
+					client.send(msg);
+					Thread.sleep(3000);
 	    		}	
 	    	}
  
