@@ -4,7 +4,7 @@ import java.util.Map;
 public class InfoTable {
     Map<String, ServidorInfo> tabla;
 
-    InfoTabla() {
+    public InfoTable() {
         this.tabla = new Hashtable<>();
     }
 
