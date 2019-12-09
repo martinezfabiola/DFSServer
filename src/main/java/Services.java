@@ -64,5 +64,13 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
             e.printStackTrace();
         }
         return "Malo";
-    }
+	}
+	
+	public void puData(String nombre, String objeto, Boolean replicado) {
+		if (replicado) {
+			//Hacer multicast para guardar objeto
+		} else {
+			// Hacer unicast a algun server para guardar objeto
+		}
+	}
 }

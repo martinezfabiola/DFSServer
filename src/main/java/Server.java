@@ -56,7 +56,12 @@ public static void main (String[] argv) {
  
 	    	Services services = new Services(name);
  
-	    	Naming.rebind("rmi://localhost/ABC", services);
+			Naming.rebind("rmi://localhost/ABC", services);
+			
+			InfoTable tabla = new InfoTable();
+			SlaveMonitor slaveMonitor = new SlaveMonitor(tabla);
+			Thread threadActualizacion = new Thread(slaveMonitor);
+			threadActualizacion.start();
  
 			System.out.println("Server is ready:");
 			Server serverInfo = new Server();
