@@ -74,7 +74,7 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
                 Socket soc = new Socket(ip, 5050);
                 DataOutputStream dOut = new DataOutputStream(soc.getOutputStream());
 
-                dOut.writeUTF("3" + nombre + " " + objeto);
+                dOut.writeUTF("3 " + nombre + " " + objeto);
                 dOut.flush();
 
                 dOut.close();
@@ -93,7 +93,7 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
                 DataOutputStream dOut = new DataOutputStream(soc.getOutputStream());
                 DataInputStream dIn = new DataInputStream(soc.getInputStream());
 
-                dOut.writeUTF("4" + nombre);
+                dOut.writeUTF("4 " + nombre);
                 dOut.flush();
 
                 String objeto = dIn.readUTF();

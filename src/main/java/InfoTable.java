@@ -101,4 +101,9 @@ public class InfoTable {
         }
         return "Malo";
     }
+
+    public void deleteData(String path) {
+        File file = new File(path);
+        file.delete();
+    }
 }
