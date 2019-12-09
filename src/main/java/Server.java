@@ -77,7 +77,7 @@ public static void main (String[] argv) {
                         }
                     }
                         break;
-                    default: System.out.println("nada");
+                    default: ;
                 }
             }
         } catch (Exception e) {

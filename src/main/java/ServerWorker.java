@@ -28,6 +28,8 @@ public class ServerWorker {
 
                 String name = message.substring(0, message.indexOf(' '));
                 String object = message.substring(message.indexOf(' ') + 1);
+
+                tabla.saveObject(name, object);
             } catch (Exception e) {
                 System.out.println(e);
             }
