@@ -110,4 +110,22 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
         }
         return "";
     }
+
+    public void deleteData(String name) {
+        String ip = tabla.hasObject(name);
+        if (!ip.equals("")) {
+            try {
+                Socket soc = new Socket(ip, 5050);
+                DataOutputStream dOut = new DataOutputStream(soc.getOutputStream());
+
+                dOut.writeUTF("5 " + name);
+                dOut.flush();
+
+                dOut.close();
+                soc.close();
+            } catch (Exception e) {
+                System.out.println("Host not found " + e);
+            }
+        }
+    }
 }

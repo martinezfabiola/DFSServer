@@ -47,6 +47,10 @@ public class ServerWorker {
                         dOut.close();
                     }
                     break;
+                    case "5": {
+                        tabla.deleteData(message);
+                    }
+                    break;
                     default: {
                         ;
                     }

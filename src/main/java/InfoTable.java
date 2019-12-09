@@ -103,7 +103,7 @@ public class InfoTable {
     }
 
     public void deleteData(String path) {
-        File file = new File(path);
+        File file = new File(path + ".json");
         file.delete();
     }
 }
