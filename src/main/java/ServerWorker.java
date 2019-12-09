@@ -27,10 +27,10 @@ public class ServerWorker {
                 DataInputStream dIn = new DataInputStream(clientSocket.getInputStream());
                 String message = dIn.readUTF();
 
-                String option = message.substring(0, message.indexOf(' '));
-                message = message.substring(message.indexOf(' ') + 1);
+                String parts[] = message.split(" ", 2);
 
-                System.out.println(option);
+                String option = parts[0];
+                message = parts[1];
 
                 switch (option) {
                     case "1": {

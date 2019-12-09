@@ -108,9 +108,9 @@ public class Client {
 				switch (option) {
 					case "1": {
 						System.out.println(clientInfo.option1());
-						args = s.nextLine().trim().split("\\s+");
-						String ip = args[0];
-						String message = args[1];
+						String code = s.nextLine().trim();
+						String ip = code.substring(0, code.indexOf(" "));
+						String message = code.substring(code.indexOf(" ") + 1);
 						services.sendtoHost(message, ip);
 					}
 						break;
