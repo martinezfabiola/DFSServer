@@ -1,8 +1,14 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class InfoTable {
     Map<String, ServidorInfo> tabla;
@@ -24,7 +30,7 @@ public class InfoTable {
                 return server.nombre;
         }
 
-        return "The object was not found";
+        return "";
     }
 
     public synchronized Boolean getLibre() {
@@ -72,5 +78,27 @@ public class InfoTable {
             System.out.println("An error occurred.");
             e.printStackTrace();
           }
+    }
+
+    public String returnData(String name) {
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(name + ".json")) {
+            // Leer archivo JSON
+            Object obj = jsonParser.parse(reader);
+
+            JSONArray listaProcesos = (JSONArray) obj;
+            // System.out.println(listaProcesos);
+
+            return listaProcesos.toJSONString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "Malo";
     }
 }

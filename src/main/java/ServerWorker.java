@@ -1,4 +1,5 @@
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -21,15 +22,32 @@ public class ServerWorker {
 
         while (true) {
             try {
-                ServerSocket serverSocket = new ServerSocket(5000);
+                ServerSocket serverSocket = new ServerSocket(5050);
                 Socket clientSocket = serverSocket.accept();
                 DataInputStream dIn = new DataInputStream(clientSocket.getInputStream());
                 String message = dIn.readUTF();
 
-                String name = message.substring(0, message.indexOf(' '));
-                String object = message.substring(message.indexOf(' ') + 1);
+                String option = message.substring(0, message.indexOf(' '));
+                message = message.substring(message.indexOf(' ') + 1);
 
-                tabla.saveObject(name, object);
+                switch (option) {
+                    case "3": {
+                        String name = message.substring(0, message.indexOf(' '));
+                        String object = message.substring(message.indexOf(' ') + 1);
+
+                        tabla.saveObject(name, object);
+                    }
+                    break;
+                    case "4": {
+                        String data = tabla.returnData(message);
+                        DataOutputStream dOut = new DataOutputStream(clientSocket.getOutputStream());
+                        dOut.writeUTF(data);
+                        dOut.close();
+                    }
+                }
+
+                dIn.close();
+                serverSocket.close();
             } catch (Exception e) {
                 System.out.println(e);
             }

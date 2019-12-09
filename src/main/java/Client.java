@@ -126,6 +126,12 @@ public class Client {
 						break;
 					case "4": {
 						System.out.println(clientInfo.option4());
+						args = s.nextLine().trim().split("\\s+");
+						String fileName = args[0];
+						
+						String valorDevuelto = services.getData(fileName);
+
+						System.out.println(valorDevuelto);
 					}
 						break;
 					case "5": {

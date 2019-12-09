@@ -71,10 +71,10 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
             // Hacer unicast a algun server para guardar objeto
             String ip = tabla.leastObjects();
             try {
-                Socket soc = new Socket(ip, 5000);
+                Socket soc = new Socket(ip, 5050);
                 DataOutputStream dOut = new DataOutputStream(soc.getOutputStream());
 
-                dOut.writeUTF(nombre + " " + "objeto");
+                dOut.writeUTF("3" + nombre + " " + objeto);
                 dOut.flush();
 
                 dOut.close();
@@ -83,5 +83,31 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
                 System.out.println("Host not found " + e);
             }
         }
+    }
+
+    public String getData(String nombre) {
+        String ip = tabla.hasObject(nombre);
+        if (!ip.equals("")) {
+            try {
+                Socket soc = new Socket(ip, 5050);
+                DataOutputStream dOut = new DataOutputStream(soc.getOutputStream());
+                DataInputStream dIn = new DataInputStream(soc.getInputStream());
+
+                dOut.writeUTF("4" + nombre);
+                dOut.flush();
+
+                String objeto = dIn.readUTF();
+
+                dIn.close();
+                dOut.close();
+                soc.close();
+
+                return objeto;
+            } catch (Exception e) {
+                System.out.println("Host not found " + e);
+            }
+
+        }
+        return "";
     }
 }
