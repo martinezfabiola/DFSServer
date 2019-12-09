@@ -138,6 +138,10 @@ public class Client {
 						break;
 					case "5": {
 						System.out.println(clientInfo.option5());
+						args = s.nextLine().trim().split("\\s+");
+						String fileName = args[0];
+
+						services.deleteData(fileName);
 					}
 						break;
 					case "6": {
