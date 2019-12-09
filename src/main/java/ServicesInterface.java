@@ -20,5 +20,5 @@ public interface ServicesInterface extends Remote{
 
 	public void puData(String nombre, String objeto, Boolean replicado) throws RemoteException;
 
-	public String getData(String nombre);
+	public String getData(String nombre) throws RemoteException;
 }

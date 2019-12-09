@@ -30,6 +30,8 @@ public class ServerWorker {
                 String option = message.substring(0, message.indexOf(' '));
                 message = message.substring(message.indexOf(' ') + 1);
 
+                System.out.println(option);
+
                 switch (option) {
                     case "3": {
                         String name = message.substring(0, message.indexOf(' '));
@@ -43,6 +45,10 @@ public class ServerWorker {
                         DataOutputStream dOut = new DataOutputStream(clientSocket.getOutputStream());
                         dOut.writeUTF(data);
                         dOut.close();
+                    }
+                    break;
+                    default: {
+                        ;
                     }
                 }
 
