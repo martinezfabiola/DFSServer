@@ -1,6 +1,9 @@
 import java.rmi.*;
 import java.rmi.server.*;
 import java.io.*;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -82,6 +85,19 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
     public void puData(String nombre, String objeto, Boolean replicado) {
         if (replicado) {
             // Hacer multicast para guardar objeto
+            MulticastSocket socket;
+            try {
+                socket = new MulticastSocket();
+                InetAddress group = InetAddress.getByName("239.5.5.6");
+                byte[] buf = (nombre + " " + objeto).getBytes();
+                DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 1234);
+                socket.send(packet);
+                socket.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+    
         } else {
             // Hacer unicast a algun server para guardar objeto
             String ip = tabla.leastObjects();
