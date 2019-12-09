@@ -10,8 +10,6 @@ public interface ServicesInterface extends Remote{
 
 	public ServicesInterface getClient() throws RemoteException;
 
-	public String createData(String name) throws RemoteException;
-
 	public String getMsg() throws RemoteException;
 
 	public void setMsg(String msg)throws RemoteException;

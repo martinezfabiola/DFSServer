@@ -1,6 +1,13 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.rmi.*;
 import java.rmi.server.*;
+import org.json.simple.parser.ParseException;
 import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 public class Client {
 
@@ -49,6 +56,29 @@ public class Client {
 		return line1 + "\n" + line2;
 	}
 
+	public static String createData(String name) {
+        // JSON parser object to parse read file
+        JSONParser jsonParser = new JSONParser();
+
+        try (FileReader reader = new FileReader(name)) {
+            // Leer archivo JSON
+            Object obj = jsonParser.parse(reader);
+
+            JSONArray listaProcesos = (JSONArray) obj;
+            // System.out.println(listaProcesos);
+
+            return listaProcesos.toJSONString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "Malo";
+    }
+
     public static void main (String[] argv) {
         try {
             //System.setSecurityManager(new RMISecurityManager());
@@ -64,7 +94,7 @@ public class Client {
 			services.setClient(client);
 
 			String option;
-			String args;
+			String[] args;
 			Client clientInfo = new Client();
 
 			// String x = services.createData("procesos.json");
@@ -77,39 +107,33 @@ public class Client {
 					case "1": {
 						System.out.println(clientInfo.option1());
 						services.setOption(option);
-						args = s.nextLine().trim();
-						services.setMsg(args);
-						services.send(args);
 					}
 						break;
 					case "2": System.out.println(clientInfo.option2());
 						break;
 					case "3": {
 						System.out.println(clientInfo.option3());
-						args = s.nextLine().trim();
-						services.setMsg(args);
-						services.send(args);
+						args = s.nextLine().trim().split("\\s+");
+						String fileName = args[0];
+						String file = args[1];
+						String typeStorage = args[2];
+
+						Boolean replicado = typeStorage.equals("replicado");
+						String object = createData(file);
+
+						services.puData(fileName, object, replicado);
 					}
 						break;
 					case "4": {
 						System.out.println(clientInfo.option4());
-						args = s.nextLine().trim();
-						services.setMsg(args);
-						services.send(args);
 					}
 						break;
 					case "5": {
 						System.out.println(clientInfo.option5());
-						args = s.nextLine().trim();
-						services.setMsg(args);
-						services.send(args);
 					}
 						break;
 					case "6": {
 						System.out.println(clientInfo.option6());
-						args = s.nextLine().trim();
-						services.setMsg(args);
-						services.send(args);
 					}
 						break;
 					default: System.out.println("Invalid option");

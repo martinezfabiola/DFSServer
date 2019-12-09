@@ -35,4 +35,21 @@ public class InfoTable {
     public synchronized void setOccupied() {
         this.servidorInfo.libre = false;
     }
+
+    public synchronized String leastObjects() {
+        int tam = 100000;
+        String nombre = "";
+        for (String key : tabla.keySet()) {
+            if (tabla.get(key).objetosAlmacenados.size() < tam) {
+                tam = tabla.get(key).objetosAlmacenados.size();
+                nombre = tabla.get(key).nombre;
+            }
+        }
+        return nombre;
+    }
+
+    public synchronized void saveObject(String name, String object) {
+        this.servidorInfo.objetosAlmacenados.add(name);
+        
+    }
 }

@@ -10,11 +10,12 @@ public static void main (String[] argv) {
             System.out.println("Enter Your name and press Enter:");
             String name = s.nextLine().trim();
  
-            Services services = new Services(name);
+            InfoTable tabla = new InfoTable(name);
+
+            Services services = new Services(name, tabla);
  
             Naming.rebind("rmi://localhost/ABC", services);
             
-            InfoTable tabla = new InfoTable(name);
             TableReceiver tableReceiver = new TableReceiver(tabla);
             Thread threadActualizacion = new Thread(tableReceiver);
             threadActualizacion.start();
