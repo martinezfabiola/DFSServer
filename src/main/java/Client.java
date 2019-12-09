@@ -87,7 +87,9 @@ public class Client {
 			String name = s.nextLine().trim();		    		    	
 			ServicesInterface client = new Services(name);
 
-			ServicesInterface services = (ServicesInterface) Naming.lookup("rmi://localhost/ABC");
+			ServicesInterface services = (ServicesInterface) Naming.lookup("rmi://192.168.0.105/ABC");
+			//ServicesInterface services = (ServicesInterface) Naming.lookup("rmi://localhost/ABC");
+			
 			String msg="["+client.getName()+"] got connected";
 			services.send(msg);
 			System.out.println("Client is ready:");
