@@ -8,6 +8,10 @@ public class ReplicatedObjects implements Runnable {
     InfoTable tabla;
     protected MulticastSocket socket = null;
     protected byte[] buf = new byte[256];
+
+    public ReplicatedObjects(InfoTable table) {
+        this.tabla = table;
+    }
     
     public void run() {
         try{

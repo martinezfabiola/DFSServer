@@ -12,4 +12,5 @@ Services.class
 Parser.class
 Server.class
 ServidorInfo.class
+ReplicatedObjects.class
 MulticastPublisher.class

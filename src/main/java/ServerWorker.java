@@ -20,6 +20,10 @@ public class ServerWorker {
         Thread threadPublicador = new Thread(tablePublisher);
         threadPublicador.start();
 
+        ReplicatedObjects replicatedObjects = new ReplicatedObjects(tabla);
+        Thread repThread = new Thread(replicatedObjects);
+        repThread.start();
+
         while (true) {
             try {
                 ServerSocket serverSocket = new ServerSocket(5050);
