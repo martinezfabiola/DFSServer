@@ -85,12 +85,11 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
     public void puData(String nombre, String objeto, Boolean replicado) {
         if (replicado) {
             // Hacer multicast para guardar objeto
-            MulticastSocket socket;
             try {
-                socket = new MulticastSocket();
+                MulticastSocket socket = new MulticastSocket();
                 InetAddress group = InetAddress.getByName("239.5.5.6");
                 byte[] buf = (nombre + " " + objeto).getBytes();
-                DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 1234);
+                DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 5051);
                 socket.send(packet);
                 socket.close();
             } catch (IOException e) {
