@@ -99,7 +99,7 @@ public class InfoTable {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return "Malo";
+        return "Object not found";
     }
 
     public void deleteData(String path) {
