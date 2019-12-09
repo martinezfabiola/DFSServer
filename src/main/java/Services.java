@@ -64,6 +64,21 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
         return option;
     }
 
+    public void sendtoHost(String message, String ip) {
+        try {
+            Socket soc = new Socket(ip, 5050);
+            DataOutputStream dOut = new DataOutputStream(soc.getOutputStream());
+
+            dOut.writeUTF("1 " + message);
+            dOut.flush();
+
+            dOut.close();
+            soc.close();
+        } catch (Exception e) {
+            System.out.println("Host not found " + e);
+        }
+    }
+
     public void puData(String nombre, String objeto, Boolean replicado) {
         if (replicado) {
             // Hacer multicast para guardar objeto

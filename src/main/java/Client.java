@@ -23,8 +23,8 @@ public class Client {
 	}
 
 	public String option1(){
-		String line1 = "Please, put the object name and host as follow: ";
-		String line2 = "Ex: procesos.json host";
+		String line1 = "Please, input the ip and message as follow: ";
+		String line2 = "Ex: 192.168.0.105 hola jajaja que bueno esta esto omegaLOL";
 		return line1 + "\n" + line2;
 	}
 
@@ -108,7 +108,10 @@ public class Client {
 				switch (option) {
 					case "1": {
 						System.out.println(clientInfo.option1());
-						services.setOption(option);
+						args = s.nextLine().trim().split("\\s+");
+						String ip = args[0];
+						String message = args[1];
+						services.sendtoHost(message, ip);
 					}
 						break;
 					case "2": System.out.println(clientInfo.option2());

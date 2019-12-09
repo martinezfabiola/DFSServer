@@ -33,6 +33,10 @@ public class ServerWorker {
                 System.out.println(option);
 
                 switch (option) {
+                    case "1": {
+                        System.out.println("El mensaje fue recibido \n" + message);
+                    }
+                    break;
                     case "3": {
                         String name = message.substring(0, message.indexOf(' '));
                         String object = message.substring(message.indexOf(' ') + 1);
