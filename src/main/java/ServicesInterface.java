@@ -19,4 +19,6 @@ public interface ServicesInterface extends Remote{
 	public String getOption() throws RemoteException;
 
 	public void setOption(String userOption)throws RemoteException;
+
+	public void puData(String nombre, String objeto, Boolean replicado);
 }

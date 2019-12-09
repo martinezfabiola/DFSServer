@@ -8,12 +8,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class SlaveMonitor implements Runnable {
+public class TableReceiver implements Runnable {
     InfoTable tabla;
     protected MulticastSocket socket = null;
     protected byte[] buf = new byte[256];
 
-    SlaveMonitor(InfoTable tabla) {
+    TableReceiver(InfoTable tabla) {
         this.tabla = tabla;
     }
 
@@ -27,7 +27,6 @@ public class SlaveMonitor implements Runnable {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
                 String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println(received);
                 try {
                     // TODO: Probar esta seccion
                     JSONObject receivedJson = (JSONObject) parser.parse(received);
@@ -41,6 +40,9 @@ public class SlaveMonitor implements Runnable {
                     }
                     ServidorInfo receivedInfo = new ServidorInfo(nombreIn, libreIn, objetosAlmacenadosIn);
                     this.tabla.setEntry(receivedInfo);
+                    for ( String clave : this.tabla.tabla.keySet()) {
+                        System.out.println(clave);
+                    }
                 } catch (Exception e) {
                     System.out.println(e);
                 }

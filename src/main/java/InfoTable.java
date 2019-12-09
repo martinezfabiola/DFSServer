@@ -3,8 +3,10 @@ import java.util.Map;
 
 public class InfoTable {
     Map<String, ServidorInfo> tabla;
+    ServidorInfo servidorInfo;
 
-    public InfoTable() {
+    public InfoTable(String nombre) {
+        this.servidorInfo = new ServidorInfo(nombre);
         this.tabla = new Hashtable<>();
     }
 
@@ -20,5 +22,17 @@ public class InfoTable {
         }
 
         return "The object was not found";
+    }
+
+    public synchronized Boolean getLibre() {
+        return this.servidorInfo.libre;
+    }
+
+    public synchronized void setFree() {
+        this.servidorInfo.libre = true;
+    }
+
+    public synchronized void setOccupied() {
+        this.servidorInfo.libre = false;
     }
 }

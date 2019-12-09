@@ -5,9 +5,11 @@
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/WriteJSONExample.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/ServicesInterface.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/Parser.java
-/Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/SlaveMonitor.java
+/Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/TableReceiver.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/MulticastPublisher.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/MulticastReceiver.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/Server.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/Client.java
+/Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/ServerWorker.java
+/Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/TablePublisher.java
 /Users/capf96/Documents/University/Septiembre-Diciembre2019/DFSServer/src/main/java/ServidorInfo.java

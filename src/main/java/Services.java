@@ -81,6 +81,7 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
 			//Hacer multicast para guardar objeto
 		} else {
 			// Hacer unicast a algun server para guardar objeto
+			
 		}
 	}
 }
