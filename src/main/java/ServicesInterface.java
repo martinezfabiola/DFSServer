@@ -15,4 +15,8 @@ public interface ServicesInterface extends Remote{
 	public String getMsg() throws RemoteException;
 
 	public void setMsg(String msg)throws RemoteException;
+
+	public String getOption() throws RemoteException;
+
+	public void setOption(String userOption)throws RemoteException;
 }

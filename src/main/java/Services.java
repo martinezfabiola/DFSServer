@@ -12,10 +12,12 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
 	public volatile String name;
 	public ServicesInterface client = null;
 	public String message;
+	public String option;
  
 	public Services(String n) throws RemoteException { 
 		this.name = n;   
 		this.message = "";
+		this.option = "";
 	}
 	public String getName() throws RemoteException {
 		return this.name;
@@ -27,6 +29,10 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
 
 	public synchronized void setMsg(String msg){
 		message = msg;
+	}
+
+	public synchronized void setOption(String userOption){
+		option = userOption;
 	}
  
 	public ServicesInterface getClient(){
@@ -42,6 +48,10 @@ public class Services extends UnicastRemoteObject implements ServicesInterface {
 		return message;
 	}
 	
+	public synchronized String getOption() throws RemoteException{
+		return option;
+	}
+
 	public String createData(String name) {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
